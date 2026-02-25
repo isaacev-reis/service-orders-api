@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: Ordens de Servico API
