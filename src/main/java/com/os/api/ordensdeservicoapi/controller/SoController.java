@@ -1,7 +1,6 @@
 package com.os.api.ordensdeservicoapi.controller;
 
 import com.os.api.ordensdeservicoapi.model.SoModel;
-import com.os.api.ordensdeservicoapi.repository.SoRepository;
 import com.os.api.ordensdeservicoapi.service.SoService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -18,16 +17,16 @@ public class SoController {
 
     @PostMapping("/orders")
     public void createOrder(@RequestBody SoModel order) {
-        service.addOrder(order);
+        service.createOrder(order);
     }
 
     @GetMapping("/orders/{id}")
-    public SoModel searchById(@PathVariable UUID id) {
+    public SoModel getOrder(@PathVariable UUID id) {
         return service.getOrder(id);
     }
 
     @GetMapping("/orders")
-    public List<SoModel> listAllOrders() {
+    public List<SoModel> getAllOrders() {
         return service.getAllOrders();
     }
 

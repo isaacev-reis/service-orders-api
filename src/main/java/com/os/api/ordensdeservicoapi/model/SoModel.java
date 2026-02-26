@@ -35,28 +35,28 @@ public class SoModel {
     @Column(name = "valor")
     private BigDecimal value;
 
-    public void openServiceOrder() {
+    public void createOrder() {
         if (status == Status.OPEN) {
             throw new IllegalStateException("This order already is open!");
         }
         this.status = Status.OPEN;
     }
 
-    public void start() {
+    public void startOrder() {
         if (status != Status.OPEN) {
             throw new IllegalStateException("The order hasn't open yet!");
         }
         this.status = Status.IN_PROGRESS;
     }
 
-    public void finish() {
+    public void finishOrder() {
         if (status != Status.IN_PROGRESS) {
             throw new IllegalStateException("The service hasn't started yet!");
         }
         this.status = Status.COMPLETED;
     }
 
-    public void cancel() {
+    public void cancelOrder() {
         if (status != Status.OPEN && status != Status.IN_PROGRESS) {
             throw new IllegalStateException("This service already completed!");
         }
