@@ -1,6 +1,6 @@
 package com.os.api.ordensdeservicoapi.service;
 
-import com.os.api.ordensdeservicoapi.model.SoModel;
+import com.os.api.ordensdeservicoapi.model.ServiceOrder;
 import com.os.api.ordensdeservicoapi.repository.SoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class SoService {
         this.repository = repository;
     }
 
-    public void createOrder(SoModel order) {
+    public void createOrder(ServiceOrder order) {
         UUID id = UUID.randomUUID();
         order.setId(id);
         order.createOrder();
@@ -24,28 +24,28 @@ public class SoService {
     }
 
     public void cancelOrder(UUID id) {
-        SoModel order = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found"));
+        ServiceOrder order = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found"));
         order.cancelOrder();
         repository.save(order);
     }
 
-    public SoModel getOrder(UUID id) {
+    public ServiceOrder getOrder(UUID id) {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found"));
     }
 
     public void startOrder(UUID id) {
-        SoModel order = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found"));
+        ServiceOrder order = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found"));
         order.startOrder();
         repository.save(order);
     }
 
     public void finishOrder(UUID id) {
-        SoModel order = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found"));;
+        ServiceOrder order = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found"));;
         order.finishOrder();
         repository.save(order);
     }
 
-    public List<SoModel> getAllOrders() {
+    public List<ServiceOrder> getAllOrders() {
         return repository.findAll();
     }
 }

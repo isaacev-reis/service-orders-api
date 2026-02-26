@@ -13,7 +13,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-public class SoModel {
+@Table(name = "service_order")
+public class ServiceOrder {
 
     @Id
     @Column(name = "id")
@@ -29,7 +30,7 @@ public class SoModel {
     private LocalDate openingDate;
 
     @Column(name = "status")
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(name = "valor")
